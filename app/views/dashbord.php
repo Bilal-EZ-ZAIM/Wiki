@@ -109,8 +109,9 @@
                                                 Modifier
                                             </button>
 
-                                            <button type="button" class="btn btn-danger suppremerCategory" data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal" value="<?php echo $row->idCategorie; ?>">
+                                            <button type="button" class="btn btn-danger suppremerCategory"
+                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                value="<?php echo $row->idCategorie; ?>">
                                                 Supprimer
                                             </button>
                                         </td>
@@ -151,10 +152,11 @@
                                 <div class="modal-body">
                                     <form method="post" class="my-4">
                                         <div class="mb-3">
-                                            <input type="text" name="idSupCategoey" class="form-control"
+                                            <input type="text" name="idSupCategoey" class="form-control  d-none"
                                                 id="idSupCategoey" value="" required>
                                         </div>
-                                        <button type="submit" name="suppremerCategory" class="btn btn-primary">suppremer Category</button>
+                                        <button type="submit" name="suppremerCategory" class="btn btn-primary ">suppremer
+                                            Category</button>
                                     </form>
                                 </div>
                             </div>
@@ -185,19 +187,16 @@
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-primary ModifierCategory"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModalTage"
-                                                >
+                                                data-bs-toggle="modal" data-bs-target="#exampleModalTage">
                                                 Modifier
                                             </button>
 
-                                            <button type="button" class="btn btn-danger " data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal<?php echo $index; ?>">
+                                            <button type="button" class="btn btn-danger suppremerTage" data-bs-toggle="modal"
+                                                data-bs-target="#deleteModalTage" value="<?php echo $row->idBalise; ?>">
                                                 Supprimer
                                             </button>
                                         </td>
                                     </tr>
-
-
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
@@ -227,6 +226,23 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal fade" id="deleteModalTage" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <form method="post" class="my-4">
+                                        <div class="mb-3">
+                                            <input type="text" name="idSupTage" class="form-control d-none" id="idSupTage"
+                                                value="" required>
+                                        </div>
+                                        <button type="submit" name="suppremerTage" class="btn btn-primary">suppremer
+                                            tage</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -244,6 +260,7 @@
         let modifierCategory = document.querySelectorAll(".ModifierCategory");
 
         let suppremerCategory = document.querySelectorAll(".suppremerCategory");
+        let suppremerTage = document.querySelectorAll(".suppremerTage");
         console.log(suppremerCategory);
         function showSection(sectionId) {
             let sections = document.getElementsByClassName('content-section');
@@ -268,6 +285,11 @@
         suppremerCategory.forEach((item, index) => {
             item.addEventListener('click', () => {
                 document.getElementById("idSupCategoey").value = item.value;
+            })
+        })
+        suppremerTage.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                document.getElementById("idSupTage").value = item.value;
             })
         })
 

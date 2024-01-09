@@ -33,7 +33,6 @@ class Dashbord extends Controller
             redirect('dashbord');
         }
         if (isset($_POST['ajoutBalise'])) {
-
             $tage->setnomBalise($_POST['nomTag']);
             $data = $tage->ajoutBalise();
             $tage->insert($data);
@@ -44,6 +43,12 @@ class Dashbord extends Controller
             $conditionColumn = 'idBalise';
             $dataModifer = $tage->modiferBalise();
             $tage->update($conditionColumn, $conditionValue, $dataModifer);
+            redirect('dashbord');
+        }
+        if (isset($_POST['suppremerTage'])) {
+            $condition = "idBalise = :idBalise";
+            $params = ["idBalise" => $_POST['idSupTage']];
+            $tage->delete($condition, $params);
             redirect('dashbord');
         }
         $this->view('dashbord', $data);
