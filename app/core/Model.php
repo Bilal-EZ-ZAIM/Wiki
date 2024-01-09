@@ -80,8 +80,6 @@ class Model extends Database{
         $placeholders = ":" . implode(", :", $colum);
         $query = "INSERT INTO $this->table ($columns) VALUES ($placeholders)";
 
-        show($query);
-
         try {
             $this->query($query, $data);
             return true;

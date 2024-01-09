@@ -49,6 +49,8 @@
             <div class="btn-group-vertical">
                 <button class="btn btn-primary" onclick="showSection('categorySection')">Add Category</button>
                 <button class="btn btn-primary" onclick="showSection('tagSection')">Add Tag</button>
+                <button class="btn btn-primary" onclick="showSection('category')">les Category</button>
+                <button class="btn btn-primary" onclick="showSection('tages')">les tages</button>
             </div>
         </div>
 
@@ -61,7 +63,7 @@
                             <label for="nomCategorie" class="form-label">Nom de la catégorie</label>
                             <input type="text" id="nomCategorie" name="nomCategorie" class="form-control" required>
                         </div>
-                        <button type="submit" name="ajout" class="btn btn-primary">Ajouter catégorie</button>
+                        <button type="submit" name="ajoutCategorie" class="btn btn-primary">Ajouter catégorie</button>
                     </form>
                 </div>
             </div>
@@ -74,8 +76,20 @@
                             <label for="nomTag" class="form-label">Nom du tag</label>
                             <input type="text" id="nomTag" name="nomTag" class="form-control" required>
                         </div>
-                        <button type="submit" name="ajout" class="btn btn-primary">Ajouter tag</button>
+                        <button type="submit" name="ajoutBalise" class="btn btn-primary">Ajouter tag</button>
                     </form>
+                </div>
+            </div>
+            <div id="category" class="content-section">
+                <div class="content">
+                    <h2>Category</h2>
+
+                </div>
+            </div>
+            <div id="tages" class="content-section">
+                <div class="content">
+                    <h2>tages</h2>
+                    
                 </div>
             </div>
         </div>
