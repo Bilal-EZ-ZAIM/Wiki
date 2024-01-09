@@ -1,7 +1,8 @@
 <?php
 
-class Model extends Database{
-    
+class Model extends Database
+{
+
 
     public function getTable()
     {
@@ -65,7 +66,7 @@ class Model extends Database{
     }
 
 
-    
+
 
 
     public function insert($data = [])
@@ -90,28 +91,30 @@ class Model extends Database{
 
 
 
-    public function update($id, $data, $id_column = 'id')
-    {
-        $keys = array_keys($data);
-        $query = "UPDATE $this->table SET ";
+   public function update($column, $value, $data, $id_column = 'id')
+{
+    $keys = array_keys($data);
+    $query = "UPDATE $this->table SET ";
 
-        foreach ($keys as $key) {
-            $query .= "`$key` = :$key, ";
-        }
-
-        $query = rtrim($query, ', ');
-
-        $query .= " WHERE `$id_column` = :$id_column ";
-
-        $data[$id_column] = $id;
-
-        try {
-            $this->query($query, $data);
-            return true; 
-        } catch (PDOException $e) {
-            die("Update failed: " . $e->getMessage());
-        }
+    foreach ($keys as $key) {
+        $query .= "`$key` = :$key, ";
     }
+
+    $query = rtrim($query, ', ');
+
+    $query .= " WHERE `$column` = :$column ";
+
+
+    $data[$column] = $value;
+
+    try {
+        $this->query($query, $data);
+        return true; 
+    } catch (PDOException $e) {
+        die("Update failed: " . $e->getMessage());
+    }
+}
+
 
     public function delete($id_column, $id = 'id')
     {

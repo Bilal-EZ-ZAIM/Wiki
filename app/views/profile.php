@@ -25,10 +25,6 @@
                     </form>
                 </div>
             </div>
-        <?php else: ?>
-            <div class="alert alert-warning" role="alert">
-                Aucune donnée de profil n'a été trouvée.
-            </div>
         <?php endif; ?>
     </div>
 

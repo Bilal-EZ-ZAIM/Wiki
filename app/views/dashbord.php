@@ -44,6 +44,7 @@
 <body>
     <?php include('includ/header.php'); ?>
 
+
     <div class="d-flex flex-wrap">
         <div id="sidebar" class="order-1 order-md-0">
             <div class="btn-group-vertical">
@@ -84,27 +85,104 @@
                 <div class="content">
                     <h2>Category</h2>
 
+
                 </div>
             </div>
             <div id="tages" class="content-section">
                 <div class="content">
                     <h2>tages</h2>
-                    
+                    <?php if (!empty($data['tag'])): ?>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nom du Tag</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($data['tag'] as $index => $row): ?>
+                                    <tr>
+                                        <th scope="row">
+                                            <?php echo $index + 1; ?>
+                                        </th>
+                                        <td>
+                                            <?php echo $row->nomTag; ?>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary Modifier" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal" value=" <?php echo $row->idBalise; ?>">
+                                                Modifier
+                                            </button>
+
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#deleteModal<?php echo $index; ?>">
+                                                Supprimer
+                                            </button>
+                                        </td>
+                                    </tr>
+
+
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    <?php endif; ?>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title fs-5" id="exampleModalLabel">Nouveau nom du Tag</h2>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post" class="my-4">
+                                        <div class="mb-3">
+                                            <label for="nomTag" class="form-label">Nouveau Nom du tag</label>
+                                            <input type="text" name="ModifernomTag" class="form-control" required>
+                                            <input type="text" name="idBalise" class="form-control d-none" id="value" value=""
+                                                required>
+                                        </div>
+                                        <button type="submit" name="modifierBalise" class="btn btn-primary">Modifier
+                                            tag</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
 
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
     <script>
+
         function showSection(sectionId) {
-            var sections = document.getElementsByClassName('content-section');
+            let sections = document.getElementsByClassName('content-section');
             for (var i = 0; i < sections.length; i++) {
                 sections[i].classList.remove('active-section');
             }
 
             document.getElementById(sectionId).classList.add('active-section');
         }
+        let modifier = document.querySelectorAll(".Modifier");
+
+        modifier.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                document.getElementById("value").value = item.value;
+            })
+        })
+
+
     </script>
 
 </body>

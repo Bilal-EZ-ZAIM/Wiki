@@ -18,6 +18,14 @@ class Tage extends Model
         }
 
     }
+    public function modiferBalise()
+    {
+        if ($_SESSION['role_id'] == 2) {
+            $data = ['nomTag' => $this->nomBalise];
+            return $data;
+        }
+
+    }
 }
 
 
