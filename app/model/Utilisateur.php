@@ -64,6 +64,7 @@ class Utilisateur extends Model
     }
     public function logout(){
         $_SESSION['id'] = null;
+        $_SESSION['role_id'] = null;
         
     }
 

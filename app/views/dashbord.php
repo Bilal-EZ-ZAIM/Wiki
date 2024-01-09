@@ -45,7 +45,7 @@
     <?php include('includ/header.php'); ?>
 
 
-    <div class="d-flex flex-wrap">
+    <div class="container  d-flex flex-wrap">
         <div id="sidebar" class="order-1 order-md-0">
             <div class="btn-group-vertical">
                 <button class="btn btn-primary" onclick="showSection('categorySection')">Add Category</button>

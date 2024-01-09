@@ -1,3 +1,6 @@
+
+
+
 <header class="p-3 text-bg-dark">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -28,7 +31,7 @@
                     <a href='Signup' type='button' class='btn btn-warning'>Sign-up</a>";
                 }
                 ?>
-                
+
                 <?php if ($_SESSION['role_id'] == 2) {
                     echo "<a href='dashbord' type='button' class='btn btn-outline-light me-2'> Dashbord admin </a>";
                 }
