@@ -1,6 +1,6 @@
 <?php
 
-trait Database {
+class Database {
     private function connect(){
         try {
             $string = "mysql:host=".DBHOST.";dbname=".DBNAME;

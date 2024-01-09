@@ -1,6 +1,6 @@
 <?php
-define("ROOT","http://localhost/fre/public");
-define("DBNAME","youcode");
+define("ROOT","http://localhost/wiki/public");
+define("DBNAME","wiki");
 define("DBHOST","localhost");
 define("DBUSER","root");
 define("DBPASS","");

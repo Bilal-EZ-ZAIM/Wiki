@@ -4,14 +4,14 @@ class Home extends Controller
 
 
 
-
-    public function index()
+    public function home()
     {
-        echo"home";
+        $user = new Utilisateur;
         $this->view('home');
     }
 
    
 
 }
+
 ?>
