@@ -25,6 +25,13 @@ class Dashbord extends Controller
             $categorie->update($conditionColumn, $conditionValue, $dataModifer);
             redirect('dashbord');
         }
+        if (isset($_POST['suppremerCategory'])) {
+            $conditionValue = $_POST['idSupCategoey'];
+            $condition = "idCategorie = :idCategorie";
+            $params = ["idCategorie" => $_POST['idSupCategoey']];
+            $categorie->delete($condition, $params);
+            redirect('dashbord');
+        }
         if (isset($_POST['ajoutBalise'])) {
 
             $tage->setnomBalise($_POST['nomTag']);

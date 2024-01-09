@@ -109,8 +109,8 @@
                                                 Modifier
                                             </button>
 
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal<?php echo $index; ?>">
+                                            <button type="button" class="btn btn-danger suppremerCategory" data-bs-toggle="modal"
+                                                data-bs-target="#deleteModal" value="<?php echo $row->idCategorie; ?>">
                                                 Supprimer
                                             </button>
                                         </td>
@@ -134,11 +134,27 @@
                                         <div class="mb-3">
                                             <label for="nomTag" class="form-label">Nouveau Nom du Category</label>
                                             <input type="text" name="neaveCategory" class="form-control" required>
-                                            <input type="text" name="idCategoey" class="form-control d-none" id="valueCategory"
-                                                value="" required>
+                                            <input type="text" name="idCategoey" class="form-control d-none"
+                                                id="valueCategory" value="" required>
                                         </div>
                                         <button type="submit" name="ModiferCategory" class="btn btn-primary">Modifier
                                             Category</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <form method="post" class="my-4">
+                                        <div class="mb-3">
+                                            <input type="text" name="idSupCategoey" class="form-control"
+                                                id="idSupCategoey" value="" required>
+                                        </div>
+                                        <button type="submit" name="suppremerCategory" class="btn btn-primary">suppremer Category</button>
                                     </form>
                                 </div>
                             </div>
@@ -168,12 +184,13 @@
                                             <?php echo $row->nomTag; ?>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-primary Modifier" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal" value=" <?php echo $row->idBalise; ?>">
+                                            <button type="button" class="btn btn-primary ModifierCategory"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModalTage"
+                                                >
                                                 Modifier
                                             </button>
 
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                            <button type="button" class="btn btn-danger " data-bs-toggle="modal"
                                                 data-bs-target="#deleteModal<?php echo $index; ?>">
                                                 Supprimer
                                             </button>
@@ -186,7 +203,7 @@
                         </table>
                     <?php endif; ?>
 
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade" id="exampleModalTage" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -225,6 +242,9 @@
     <script>
         let modifier = document.querySelectorAll(".Modifier");
         let modifierCategory = document.querySelectorAll(".ModifierCategory");
+
+        let suppremerCategory = document.querySelectorAll(".suppremerCategory");
+        console.log(suppremerCategory);
         function showSection(sectionId) {
             let sections = document.getElementsByClassName('content-section');
             for (var i = 0; i < sections.length; i++) {
@@ -243,6 +263,11 @@
         modifierCategory.forEach((item, index) => {
             item.addEventListener('click', () => {
                 document.getElementById("valueCategory").value = item.value;
+            })
+        })
+        suppremerCategory.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                document.getElementById("idSupCategoey").value = item.value;
             })
         })
 

@@ -91,43 +91,45 @@ class Model extends Database
 
 
 
-   public function update($column, $value, $data, $id_column = 'id')
-{
-    $keys = array_keys($data);
-    $query = "UPDATE $this->table SET ";
-
-    foreach ($keys as $key) {
-        $query .= "`$key` = :$key, ";
-    }
-
-    $query = rtrim($query, ', ');
-
-    $query .= " WHERE `$column` = :$column ";
-
-
-    $data[$column] = $value;
-
-    try {
-        $this->query($query, $data);
-        return true; 
-    } catch (PDOException $e) {
-        die("Update failed: " . $e->getMessage());
-    }
-}
-
-
-    public function delete($id_column, $id = 'id')
+    public function update($column, $value, $data, $id_column = 'id')
     {
-        $data[$id] = $id_column;
-        $query = "DELETE FROM $this->table WHERE $id = :$id ";
-        show($data);
+        $keys = array_keys($data);
+        $query = "UPDATE $this->table SET ";
+
+        foreach ($keys as $key) {
+            $query .= "`$key` = :$key, ";
+        }
+
+        $query = rtrim($query, ', ');
+
+        $query .= " WHERE `$column` = :$column ";
+
+
+        $data[$column] = $value;
+
         try {
             $this->query($query, $data);
+            return true;
+        } catch (PDOException $e) {
+            die("Update failed: " . $e->getMessage());
+        }
+    }
+
+
+    public function delete($condition, $params = [])
+    {
+        $query = "DELETE FROM $this->table WHERE $condition";
+        show($query);
+
+        try {
+            $this->query($query, $params);
             return true;
         } catch (PDOException $e) {
             die("Delete failed: " . $e->getMessage());
         }
     }
+
+
 
 
 
