@@ -30,7 +30,7 @@
                 ?>
                 
                 <?php if ($_SESSION['role_id'] == 2) {
-                    echo "<a href='login' type='button' class='btn btn-outline-light me-2'> Dashbord admin </a>";
+                    echo "<a href='dashbord' type='button' class='btn btn-outline-light me-2'> Dashbord admin </a>";
                 }
                 ?>
             </div>
