@@ -17,6 +17,14 @@ class Dashbord extends Controller
             $data = $categorie->ajoutCategorie();
             $categorie->insert($data);
         }
+        if (isset($_POST['ModiferCategory'])) {
+            $categorie->setnomCategorie($_POST['neaveCategory']);
+            $conditionValue = $_POST['idCategoey'];
+            $conditionColumn = 'idCategorie';
+            $dataModifer = $categorie->modiferCategorie();
+            $categorie->update($conditionColumn, $conditionValue, $dataModifer);
+            redirect('dashbord');
+        }
         if (isset($_POST['ajoutBalise'])) {
 
             $tage->setnomBalise($_POST['nomTag']);
@@ -30,8 +38,6 @@ class Dashbord extends Controller
             $dataModifer = $tage->modiferBalise();
             $tage->update($conditionColumn, $conditionValue, $dataModifer);
             redirect('dashbord');
-
-
         }
         $this->view('dashbord', $data);
     }

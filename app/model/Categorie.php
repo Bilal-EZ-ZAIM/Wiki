@@ -18,6 +18,14 @@ class Categorie extends Model
         }
 
     }
+    public function modiferCategorie()
+    {
+        if ($_SESSION['role_id'] == 2) {
+            $data = [ 'nomCategorie' => $this->nomCategorie];
+            return $data;
+        }
+
+    }
 }
 
 
