@@ -10,9 +10,8 @@ class Dashbord extends Controller
         $tage = new Tage;
         $categori = $categorie->findAll();
         $tag = $tage->findAll();
-        $data = ['categori' => $categori, 'tag' => $tag];
+        $datas = ['categori' => $categori, 'tag' => $tag];
         if (isset($_POST['ajoutCategorie'])) {
-
             $categorie->setnomCategorie($_POST['nomCategorie']);
             $data = $categorie->ajoutCategorie();
             $categorie->insert($data);
@@ -26,7 +25,6 @@ class Dashbord extends Controller
             redirect('dashbord');
         }
         if (isset($_POST['suppremerCategory'])) {
-            $conditionValue = $_POST['idSupCategoey'];
             $condition = "idCategorie = :idCategorie";
             $params = ["idCategorie" => $_POST['idSupCategoey']];
             $categorie->delete($condition, $params);
@@ -36,6 +34,7 @@ class Dashbord extends Controller
             $tage->setnomBalise($_POST['nomTag']);
             $data = $tage->ajoutBalise();
             $tage->insert($data);
+            redirect('dashbord');
         }
         if (isset($_POST['ModifernomTag'])) {
             $tage->setnomBalise($_POST['ModifernomTag']);
@@ -51,7 +50,7 @@ class Dashbord extends Controller
             $tage->delete($condition, $params);
             redirect('dashbord');
         }
-        $this->view('dashbord', $data);
+        $this->view('dashbord', $datas);
     }
 
 

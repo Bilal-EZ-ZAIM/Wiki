@@ -19,6 +19,7 @@ class Wiki extends Model
     }
     public function setdateCreation($dateCreation)
     {
+        
         $this->dateCreation = htmlspecialchars($dateCreation);
     }
     public function setcategorie($categorie)
@@ -34,19 +35,17 @@ class Wiki extends Model
     public function ajoutWiki()
     {
        
-            $data = ['idWiki' => null, 'titre' => $this->titre , 'contenu' => $this->contenu , 'dateCreation' => 'CURRENT_DATE', 'auteurID' =>  $_SESSION['id'] , 'categorieID' => $this->categorie , 'baliseID' => $this->balise];
+            $data = ['idWiki' => null, 'titre' => $this->titre , 'contenu' => $this->contenu , 'dateCreation' => $this->dateCreation, 'auteurID' =>  $_SESSION['id'] , 'categorieID' => $this->categorie , 'baliseID' => $this->balise];
             return $data;
         
 
     }
-    // public function modiferCategorie()
-    // {
-    //     if ($_SESSION['role_id'] == 2) {
-    //         $data = [ 'nomCategorie' => $this->nomCategorie];
-    //         return $data;
-    //     }
-
-    // }
+    public function modiferWiki()
+    {
+            $data = ['titre' => $this->titre ,  'contenu' => $this->contenu];
+            return $data;
+    
+    }
 }
 
 

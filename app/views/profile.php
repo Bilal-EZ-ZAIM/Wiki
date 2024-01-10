@@ -71,15 +71,15 @@
     <div class="container d-flex flex-wrap">
         <div id="sidebar" class="order-1 order-md-0">
             <div class="btn-group-vertical">
-                <button class="btn btn-primary" onclick="showSection('categorySection')">Ajout Wiki</button>
-                <button class="btn btn-primary" onclick="showSection('tagSection')">Add Tag</button>
+                <button class="btn btn-primary" onclick="showSection('ajoutWiki')">Ajout Wiki</button>
+                <button class="btn btn-primary" onclick="showSection('tagSection')">les Wiki</button>
                 <button class="btn btn-primary" onclick="showSection('category')">les Category</button>
                 <button class="btn btn-primary" onclick="showSection('tages')">les tages</button>
             </div>
         </div>
 
         <div id="content" class="order-0 order-md-1 flex-grow-1">
-            <div id="categorySection" class="content-section active-section">
+            <div id="ajoutWiki" class="content-section active-section">
                 <div class="content">
                     <h2>Ajouter Wiki</h2>
                     <form method="post" class="my-4">
@@ -95,29 +95,30 @@
                                 <div class="mb-3 col-2">
                                     <label for="" class="form-label">Category</label>
                                     <div class="card-body">
-                                        <?php foreach ($data['categories'] as $row): ?>
-                                            <select name="categorie" id="" class="p-2">
+                                        <select name="categorie" id="" class="p-2">
+                                            <?php foreach ($data['categories'] as $row): ?>
+
                                                 <option value="<?php echo $row->idCategorie; ?>">
                                                     <?php echo $row->nomCategorie; ?>
                                                 </option>
-                                            </select>
-                                        <?php endforeach; ?>
+
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
                                 </div>
                             <?php endif; ?>
                             <?php if (!empty($data)): ?>
                                 <div class="mb-3 col-2">
                                     <label for="" class="form-label">Tages</label>
-                                    <div class="card-body">
-
-                                        <?php foreach ($data['tages'] as $row): ?>
+                                    <?php foreach ($data['tages'] as $row): ?>
+                                        <div class="card-body">
                                             <select name="tage" id="" class="p-2">
                                                 <option value=" <?php echo $row->idBalise; ?>">
                                                     <?php echo $row->nomTag; ?>
                                                 </option>
                                             </select>
-                                        <?php endforeach; ?>
-                                    </div>
+                                        </div>
+                                    <?php endforeach; ?>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -129,180 +130,99 @@
 
             <div id="tagSection" class="content-section">
                 <div class="content">
-                    <h2>Ajouter des tags</h2>
-                    <form method="post" class="my-4">
-                        <div class="mb-3">
-                            <label for="nomTag" class="form-label">Nom du tag</label>
-                            <input type="text" id="nomTag" name="nomTag" class="form-control" required>
-                        </div>
-                        <button type="submit" name="ajoutBalise" class="btn btn-primary">Ajouter tag</button>
-                    </form>
-                </div>
-            </div>
-            <div id="category" class="content-section">
-                <div class="content">
-                    <h2>Category</h2>
-                    <?php if (!empty($data['tag'])): ?>
+                    <h2>les Wiki</h2>
+                    <?php if (!empty($data['wiki'])): ?>
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Nom du categori</th>
+                                    <th scope="col">Titre du Wiki</th>
+                                    <th scope="col">data de creation</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($data['categori'] as $index => $row): ?>
+                                <?php foreach ($data['wiki'] as $index => $row): ?>
                                     <tr>
                                         <th scope="row">
                                             <?php echo $index + 1; ?>
                                         </th>
                                         <td>
-                                            <?php echo $row->nomCategorie; ?>
+                                            <?php echo $row->titre; ?>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-primary ModifierCategory"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                                value="<?php echo $row->idCategorie; ?>">
+                                            <?php echo $row->dateCreation; ?>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary ModifierWiki" data-bs-toggle="modal"
+                                                data-bs-target="#modifierWiki<?php echo $row->idWiki; ?>" value="<?php echo $row->idWiki; ?>">
                                                 Modifier
                                             </button>
 
-                                            <button type="button" class="btn btn-danger suppremerCategory"
-                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                                value="<?php echo $row->idCategorie; ?>">
+                                            <button type="button" class="btn btn-danger suppremerWiki" data-bs-toggle="modal"
+                                                data-bs-target="#deleteWiki" value="<?php echo $row->idWiki; ?>">
                                                 Supprimer
                                             </button>
                                         </td>
                                     </tr>
+                                    <div class="modal fade" id="modifierWiki<?php echo $row->idWiki; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h2 class="modal-title fs-5" id="exampleModalLabel">Modifier Wiki</h2>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form method="post" class="my-4">
+                                                        <div class="mb-3">
+                                                            <label for="nomTag" class="form-label">Nouveau Titre du
+                                                                Wiki</label>
+                                                            <input type="text" name="modiferTitre" class="form-control"value="<?php echo $row->titre; ?>"
+                                                                required>
+                                                                <label for="nomTag" class="form-label">Nouveau Countune du
+                                                                Wiki</label>
+                                                            <textarea type="text" name="modiferCountent" class="form-control" value=""
+                                                                required> <?php echo $row->contenu; ?> </textarea>
+                                                            <input type="text" name="idWiki" class="form-control d-none"
+                                                                 value="<?php echo $row->idWiki; ?>" required>
+                                                        </div>
+                                                        <button type="submit" name="ModiferWiki"
+                                                            class="btn btn-primary">Modifier
+                                                            Wiki</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
                     <?php endif; ?>
 
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade" id="deleteWiki" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h2 class="modal-title fs-5" id="exampleModalLabel">Nouveau nom du Category</h2>
+                                    <h2 class="modal-title fs-5" id="exampleModalLabel">Supprimer Wiki</h2>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <form method="post" class="my-4">
                                         <div class="mb-3">
-                                            <label for="nomTag" class="form-label">Nouveau Nom du Category</label>
-                                            <input type="text" name="neaveCategory" class="form-control" required>
-                                            <input type="text" name="idCategoey" class="form-control d-none"
-                                                id="valueCategory" value="" required>
+                                            <input type="text" name="idSupwiki" class="form-control d-none"
+                                                id="idSupwiki" value="" required>
                                         </div>
-                                        <button type="submit" name="ModiferCategory" class="btn btn-primary">Modifier
-                                            Category</button>
+                                        <button type="submit" name="supprimerWiki" class="btn btn-primary">Supprimer
+                                            Wiki</button>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <form method="post" class="my-4">
-                                        <div class="mb-3">
-                                            <input type="text" name="idSupCategoey" class="form-control  d-none"
-                                                id="idSupCategoey" value="" required>
-                                        </div>
-                                        <button type="submit" name="suppremerCategory"
-                                            class="btn btn-primary ">suppremer
-                                            Category</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="tages" class="content-section">
-                <div class="content">
-                    <h2>tages</h2>
-                    <?php if (!empty($data['tag'])): ?>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Nom du Tag</th>
-                                    <th scope="col">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($data['tag'] as $index => $row): ?>
-                                    <tr>
-                                        <th scope="row">
-                                            <?php echo $index + 1; ?>
-                                        </th>
-                                        <td>
-                                            <?php echo $row->nomTag; ?>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary ModifierCategory"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModalTage">
-                                                Modifier
-                                            </button>
-
-                                            <button type="button" class="btn btn-danger suppremerTage" data-bs-toggle="modal"
-                                                data-bs-target="#deleteModalTage" value="<?php echo $row->idBalise; ?>">
-                                                Supprimer
-                                            </button>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    <?php endif; ?>
-
-                    <div class="modal fade" id="exampleModalTage" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2 class="modal-title fs-5" id="exampleModalLabel">Nouveau nom du Tag</h2>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="post" class="my-4">
-                                        <div class="mb-3">
-                                            <label for="nomTag" class="form-label">Nouveau Nom du tag</label>
-                                            <input type="text" name="ModifernomTag" class="form-control" required>
-                                            <input type="text" name="idBalise" class="form-control d-none" id="value"
-                                                value="" required>
-                                        </div>
-                                        <button type="submit" name="modifierBalise" class="btn btn-primary">Modifier
-                                            tag</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="deleteModalTage" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <form method="post" class="my-4">
-                                        <div class="mb-3">
-                                            <input type="text" name="idSupTage" class="form-control d-none"
-                                                id="idSupTage" value="" required>
-                                        </div>
-                                        <button type="submit" name="suppremerTage" class="btn btn-primary">suppremer
-                                            tage</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -316,12 +236,8 @@
         crossorigin="anonymous"></script>
 
     <script>
-        let modifier = document.querySelectorAll(".Modifier");
-        let modifierCategory = document.querySelectorAll(".ModifierCategory");
 
-        let suppremerCategory = document.querySelectorAll(".suppremerCategory");
-        let suppremerTage = document.querySelectorAll(".suppremerTage");
-        console.log(suppremerCategory);
+        let suppremerWiki = document.querySelectorAll(".suppremerWiki");
         function showSection(sectionId) {
             let sections = document.getElementsByClassName('content-section');
             for (var i = 0; i < sections.length; i++) {
@@ -332,24 +248,11 @@
         }
 
 
-        modifier.forEach((item, index) => {
+        
+        suppremerWiki.forEach((item, index) => {
             item.addEventListener('click', () => {
-                document.getElementById("value").value = item.value;
-            })
-        })
-        modifierCategory.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                document.getElementById("valueCategory").value = item.value;
-            })
-        })
-        suppremerCategory.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                document.getElementById("idSupCategoey").value = item.value;
-            })
-        })
-        suppremerTage.forEach((item, index) => {
-            item.addEventListener('click', () => {
-                document.getElementById("idSupTage").value = item.value;
+                document.getElementById("idSupwiki").value = item.value;
+                console.log("kjjkjk");
             })
         })
 
