@@ -39,6 +39,10 @@
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
     }
+
+    #countent {
+        height: 20vh;
+    }
 </style>
 
 <body>
@@ -48,7 +52,7 @@
         <?php if (!empty($data)): ?>
             <div class="card">
                 <div class="card-body">
-                    <?php foreach ($data as $row): ?>
+                    <?php foreach ($data['profile'] as $row): ?>
                         <h3 class="card-title">
                             <?php echo $row->prenom . ' ' . $row->nom; ?>
                         </h3>
@@ -67,7 +71,7 @@
     <div class="container d-flex flex-wrap">
         <div id="sidebar" class="order-1 order-md-0">
             <div class="btn-group-vertical">
-                <button class="btn btn-primary" onclick="showSection('categorySection')">Add Category</button>
+                <button class="btn btn-primary" onclick="showSection('categorySection')">Ajout Wiki</button>
                 <button class="btn btn-primary" onclick="showSection('tagSection')">Add Tag</button>
                 <button class="btn btn-primary" onclick="showSection('category')">les Category</button>
                 <button class="btn btn-primary" onclick="showSection('tages')">les tages</button>
@@ -77,13 +81,48 @@
         <div id="content" class="order-0 order-md-1 flex-grow-1">
             <div id="categorySection" class="content-section active-section">
                 <div class="content">
-                    <h2>Ajouter des catégories</h2>
+                    <h2>Ajouter Wiki</h2>
                     <form method="post" class="my-4">
                         <div class="mb-3">
-                            <label for="nomCategorie" class="form-label">Nom de la catégorie</label>
-                            <input type="text" id="nomCategorie" name="nomCategorie" class="form-control" required>
+                            <label for="titer" class="form-label">Nom de la titer</label>
+                            <input type="text" id="titer" name="nomTiter" class="form-control" required>
+                            <label for="countent" class="form-label">Nom de la catégorie</label>
+                            <textarea type="text" id="countent" name="nomCountent" class="form-control"
+                                required> </textarea>
                         </div>
-                        <button type="submit" name="ajoutCategorie" class="btn btn-primary">Ajouter catégorie</button>
+                        <div class="d-flex">
+                            <?php if (!empty($data)): ?>
+                                <div class="mb-3 col-2">
+                                    <label for="" class="form-label">Category</label>
+                                    <div class="card-body">
+                                        <?php foreach ($data['categories'] as $row): ?>
+                                            <select name="categorie" id="" class="p-2">
+                                                <option value="<?php echo $row->idCategorie; ?>">
+                                                    <?php echo $row->nomCategorie; ?>
+                                                </option>
+                                            </select>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (!empty($data)): ?>
+                                <div class="mb-3 col-2">
+                                    <label for="" class="form-label">Tages</label>
+                                    <div class="card-body">
+
+                                        <?php foreach ($data['tages'] as $row): ?>
+                                            <select name="tage" id="" class="p-2">
+                                                <option value=" <?php echo $row->idBalise; ?>">
+                                                    <?php echo $row->nomTag; ?>
+                                                </option>
+                                            </select>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <button type="submit" name="ajoutWiki" class="btn btn-primary">Ajouter Wiki</button>
+
                     </form>
                 </div>
             </div>

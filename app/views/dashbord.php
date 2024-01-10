@@ -48,8 +48,8 @@
     <div class="container  d-flex flex-wrap">
         <div id="sidebar" class="order-1 order-md-0">
             <div class="btn-group-vertical">
-                <button class="btn btn-primary" onclick="showSection('categorySection')">Add Category</button>
-                <button class="btn btn-primary" onclick="showSection('tagSection')">Add Tag</button>
+                <button class="btn btn-primary" onclick="showSection('categorySection')">ajoute Category</button>
+                <button class="btn btn-primary" onclick="showSection('tagSection')">ajout Tag</button>
                 <button class="btn btn-primary" onclick="showSection('category')">les Category</button>
                 <button class="btn btn-primary" onclick="showSection('tages')">les tages</button>
             </div>
