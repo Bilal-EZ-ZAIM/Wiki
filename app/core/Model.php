@@ -9,10 +9,18 @@ class Model extends Database
         return $this->table;
     }
 
-    public function dynamicJoin($joinTable, $currentTableColumn, $joinColumn)
+    public function dynamicJoin($joinTable, $currentTableColumn, $joinColumn , $id)
+    {
+        $query = "SELECT * FROM $this->table";
+        $query .= " INNER JOIN $joinTable ON $this->table.$currentTableColumn = $joinTable.$joinColumn  WHERE idWiki =$id";
+
+        return $this->query($query);
+    }
+    public function dynamicJoinWithCondition($joinTable, $currentTableColumn, $joinColumn, $condition)
     {
         $query = "SELECT * FROM $this->table";
         $query .= " INNER JOIN $joinTable ON $this->table.$currentTableColumn = $joinTable.$joinColumn";
+        $query .= " WHERE $condition";
 
         return $this->query($query);
     }
@@ -80,7 +88,6 @@ class Model extends Database
         $columns = implode(", ", $colum);
         $placeholders = ":" . implode(", :", $colum);
         $query = "INSERT INTO $this->table ($columns) VALUES ($placeholders)";
-        
         try {
             $this->query($query, $data);
             return true;

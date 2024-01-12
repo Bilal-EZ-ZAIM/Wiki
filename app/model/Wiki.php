@@ -35,7 +35,7 @@ class Wiki extends Model
     public function ajoutWiki()
     {
        
-            $data = ['idWiki' => null, 'titre' => $this->titre , 'contenu' => $this->contenu , 'dateCreation' => $this->dateCreation, 'auteurID' =>  $_SESSION['id'] , 'categorieID' => $this->categorie , 'baliseID' => $this->balise];
+            $data = ['idWiki' => null, 'titre' => $this->titre , 'contenu' => $this->contenu , 'dateCreation' => $this->dateCreation, 'auteurID' =>  $_SESSION['id'] , 'categorie' => $this->categorie , 'balise' => $this->balise , 'is_archived'=>0];
             return $data;
         
 

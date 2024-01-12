@@ -22,16 +22,6 @@
             height: 100vh;
             margin-bottom: 40px;
         }
-       
-        /* .hero-section h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-
-        .hero-section p {
-            font-size: 1.5em;
-            margin-bottom: 30px;
-        } */
     </style>
 </head>
 
@@ -40,146 +30,72 @@
     include('includ/header.php');
     ?>
     <section class="hero-section">
-        <div class="container">
-            <!-- <h1>Discover the World of Wikis</h1>
-            <p >Explore, Create, and Share Knowledge with Our Wiki Platform</p> -->
-            <!-- <a href="#" class="btn btn-primary btn-lg">Get Started</a> -->
-        </div>
     </section>
     <div class="container">
-      
-
-        <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="card mb-5 shadow-sm">
-                    <img src="imgs/a.jpg" class="img-fluid" />
-
-                    <div class="card-body">
-                        <div class="card-title">
-                            <h2>This is the blog title</h2>
-                        </div>
-                        <div class="card-text">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Deleniti corporis quis ab. Exercitationem et quibusdam
-                                impedit? Sint vitae labore nulla sit, dignissimos non tempore,
-                                maxime facere, quod harum aliquid in...
-                            </p>
-                        </div>
-                        <a href="#" class="btn btn-outline-primary rounded-0 float-end">Read More</a>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card mb-5 shadow-sm">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h2>Category</h2>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="card mb-5 shadow-sm">
-                    <img src="imgs/b.jpg" class="img-fluid" />
-
-                    <div class="card-body">
-                        <div class="card-title">
-                            <h2>This is the blog title</h2>
-                        </div>
-                        <div class="card-text">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Deleniti corporis quis ab. Exercitationem et quibusdam
-                                impedit? Sint vitae labore nulla sit, dignissimos non tempore,
-                                maxime facere, quod harum aliquid in...
-                            </p>
-                        </div>
-                        <a href="#" class="btn btn-outline-primary rounded-0 float-end">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="card mb-5 shadow-sm">
-                    <img src="imgs/c.jpg" class="img-fluid" />
-
-                    <div class="card-body">
-                        <div class="card-title">
-                            <h2>This is the blog title</h2>
-                        </div>
-                        <div class="card-text">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Deleniti corporis quis ab. Exercitationem et quibusdam
-                                impedit? Sint vitae labore nulla sit, dignissimos non tempore,
-                                maxime facere, quod harum aliquid in...
-                            </p>
-                        </div>
-                        <a href="#" class="btn btn-outline-primary rounded-0 float-end">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="card mb-5 shadow-sm">
-                    <img src="imgs/d.jpg" class="img-fluid" />
-
-                    <div class="card-body">
-                        <div class="card-title">
-                            <h2>This is the blog title</h2>
-                        </div>
-                        <div class="card-text">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Deleniti corporis quis ab. Exercitationem et quibusdam
-                                impedit? Sint vitae labore nulla sit, dignissimos non tempore,
-                                maxime facere, quod harum aliquid in...
-                            </p>
-                        </div>
-                        <a href="#" class="btn btn-outline-primary rounded-0 float-end">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="card mb-5 shadow-sm">
-                    <img src="imgs/e.jpg" class="img-fluid" />
-
-                    <div class="card-body">
-                        <div class="card-title">
-                            <h2>This is the blog title</h2>
-                        </div>
-                        <div class="card-text">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Deleniti corporis quis ab. Exercitationem et quibusdam
-                                impedit? Sint vitae labore nulla sit, dignissimos non tempore,
-                                maxime facere, quod harum aliquid in...
-                            </p>
-                        </div>
-                        <a href="#" class="btn btn-outline-primary rounded-0 float-end">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="card mb-5 shadow-sm">
-                    <img src="imgs/f.jpg" class="img-fluid" />
-
-                    <div class="card-body">
-                        <div class="card-title">
-                            <h2>This is the blog title</h2>
-                        </div>
-                        <div class="card-text">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Deleniti corporis quis ab. Exercitationem et quibusdam
-                                impedit? Sint vitae labore nulla sit, dignissimos non tempore,
-                                maxime facere, quod harum aliquid in...
-                            </p>
-                        </div>
-                        <a href="#" class="btn btn-outline-primary rounded-0 float-end">Read More</a>
-                    </div>
+                    <ul class="list-group">
+                        <?php foreach ($data['categories'] as $row): ?>
+                            <li class="list-group-item">
+                                <?php echo $row->nomCategorie; ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <?php foreach ($data['wiki'] as $row): ?>
+                <?php if ($row->is_archived == 1): ?>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="card mb-5 shadow-sm">
+                            <img src="https://images.pexels.com/photos/4559592/pexels-photo-4559592.jpeg?auto=compress&cs=tinysrgb&w=600"
+                                class="img-fluid" />
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h2>
+                                        <?php echo $row->titre; ?>
+                                    </h2>
+                                </div>
+                                <div class="card-text">
+                                    <p>
+                                        <?php echo $row->contenu; ?>
+                                    </p>
+                                </div>
+                                <div class="card-text">
+                                    <p>Categorie : <strong>
+                                            <?php echo $row->categorie; ?>
+                                        </strong></p>
+                                </div>
+                                <div class="card-text">
+                                    <p>Balise : <strong>
+                                            <?php echo $row->balise; ?>
+                                        </strong></p>
+                                </div>
+                                <a href="ditalise?id=<?php echo $row->idWiki; ?>"
+                                    class="btn btn-outline-primary rounded-0 float-end">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+
     </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+
+    <?php
+    include('includ/footer.php');
+    ?>
+
 </body>
 
 </html>

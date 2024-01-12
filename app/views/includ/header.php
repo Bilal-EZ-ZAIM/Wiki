@@ -1,4 +1,14 @@
+<?php
+if($_SESSION['role_id'] == false){
 
+    $_SESSION['role_id'] = null;
+}
+if($_SESSION['id'] == false){
+
+    $_SESSION['id'] = null;
+}
+
+?>
 
 
 <header class="p-3 text-bg-dark">

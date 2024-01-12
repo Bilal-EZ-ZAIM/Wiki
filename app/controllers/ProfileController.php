@@ -18,17 +18,17 @@ class Profile extends Controller
             $wiki->settitre($_POST['nomTiter']);
             $wiki->setcontenu($_POST['nomCountent']);
             $wiki->setcategorie($_POST['categorie']);
-            $wiki->setbalise($_POST['tage']);
+            $wiki->setbalise($_POST['select']);
             $wiki->setdateCreation(date('Y-m-d'));
             $data = $wiki->ajoutWiki();
             $wiki->insert($data);
-            redirect('profile');
+            Functions::redirect('profile');
         }
         if (isset($_POST['supprimerWiki'])) {
             $condition = "idWiki = :idWiki";
             $params = ["idWiki" => $_POST['idSupwiki']];
             $wiki->delete($condition, $params);
-            redirect('profile');
+            Functions::redirect('profile');
         }
         if (isset($_POST['ModiferWiki'])) {
             $wiki->settitre($_POST['modiferTitre']);
@@ -36,15 +36,14 @@ class Profile extends Controller
             $conditionValue = $_POST['idWiki'];
             $conditionColumn = 'idWiki';
             $dataModifer = $wiki->modiferWiki();
-            show($dataModifer);
             $wiki->update($conditionColumn, $conditionValue, $dataModifer);
-            redirect('profile');
+            Functions::redirect('profile');
         }
         if ($_SESSION['id'] != null) {
             $user = new Utilisateur;
             if (isset($_POST['logout'])) {
                 $user->logout();
-                redirect('home');
+                Functions::redirect('home');
             }
             $profile = $user->where(["idUtilisateur" => $_SESSION['id']]);
             $data = [];
@@ -56,7 +55,7 @@ class Profile extends Controller
         }
 
         if ($_SESSION['id'] == null) {
-            redirect('home');
+            Functions::redirect('home');
         }
 
     }
