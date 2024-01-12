@@ -9,17 +9,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
+
 <style>
     main {
         background-color: #eaeaea;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        min-height: 100vh;
+        margin: 0;
     }
 
     .contenr {
         display: flex;
+        flex-direction: column;
         max-width: 800px;
         width: 100%;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -27,7 +30,6 @@
     }
 
     .image-container {
-        flex: 1;
         overflow: hidden;
         background-color: #fff;
         display: flex;
@@ -37,12 +39,10 @@
 
     .image-container img {
         max-width: 100%;
-        max-height: 100%;
-        border-right: 1px solid #ddd;
+        height: auto;
     }
 
     .formulaire {
-        flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -53,6 +53,7 @@
         font-weight: bold;
         gap: 20px;
         font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+        padding: 20px;
     }
 
     .formulaire input {
@@ -71,12 +72,28 @@
     }
 
     #Signup {
-        width: 200px;
+        width: 100%;
         color: #fff;
         z-index: 555;
         background-color: #073b3b;
         cursor: pointer;
         height: 5vh;
+        max-width: 300px;
+    }
+
+    @media (min-width: 768px) {
+        .contenr {
+            flex-direction: row;
+            height: 60vh;
+        }
+
+        .image-container {
+            flex: 1;
+        }
+
+        .formulaire {
+            flex: 1;
+        }
     }
 </style>
 
@@ -88,7 +105,8 @@
     <main class="bg-light">
         <div class="contenr bg-white">
             <div class="image-container">
-                <img src="./sign.php" alt="Image de démonstration" />
+                <img src="https://media.istockphoto.com/id/453069475/fr/photo/base-de-connaissances-wiki-bouton.jpg?b=1&s=612x612&w=0&k=20&c=gMvgnOspl8GbknMBM9enAPk4y5-RMpbpsscJBLTLCqI="
+                    alt="Image de démonstration" />
             </div>
             <form method="POST" class="formulaire">
                 <input type="text" name="prenom" placeholder="Prénom" required class="input">
@@ -107,6 +125,7 @@
             </form>
         </div>
     </main>
+
     <?php
     include('includ/footer.php');
     ?>

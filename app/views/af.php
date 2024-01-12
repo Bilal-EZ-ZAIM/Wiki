@@ -3,7 +3,6 @@
 $searchTerm = isset($_GET['term']) ? $_GET['term'] : '';
 
 $result = performSearch($searchTerm, $data);
-show($result);
 if ($result) {
     echo '<p>ID: ' . $result->idWiki . ', Name: ' . $result->titre. '</p>';
 } else {

@@ -30,11 +30,6 @@ if($_SESSION['id'] == false){
 
             </ul>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
-                    aria-label="Search">
-            </form>
-
             <div class="text-end">
                 <?php if ($_SESSION['id'] == null) {
                     echo "<a href='login' type='button' class='btn btn-outline-light me-2'> Login </a>

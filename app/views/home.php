@@ -13,7 +13,7 @@
         }
 
         .hero-section {
-            background-image: url('https://media.istockphoto.com/id/488792838/photo/wiki-text-and-earth-globe.jpg?s=2048x2048&w=is&k=20&c=zvkFs3u8VZjUT_S9qQmr1ycx0hzGkMnarpq0zXFiXG8=');
+            background-image: url('https://media.istockphoto.com/id/488792838/fr/photo/base-de-connaissances-wiki-texte-et-de-la-terre-monde.jpg?b=1&s=612x612&w=0&k=20&c=c8deNCaPmDWCNvvdpwSiNFF2kXtEAK-CXokMLgBsa6w=');
             background-size: cover;
             background-position: center;
             color: #ffffff;

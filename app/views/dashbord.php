@@ -158,8 +158,12 @@
             <div id="category" class="content-section">
                 <div class="content">
                     <h2>Category</h2>
+                    <form id="search-form">
+                        <input type="text" id="search-term"  class="form-control" placeholder="search category">
+                        <button type="submit" class="btn btn-primary ModifierCategory">rechercher</button>
+                    </form>
                     <?php if (!empty($data['tag'])): ?>
-                        <table class="table">
+                        <table class="table" >
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -167,7 +171,7 @@
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="search-results">
                                 <?php foreach ($data['categori'] as $index => $row): ?>
                                     <tr>
                                         <th scope="row">
@@ -388,7 +392,19 @@
                 document.getElementById("idSupTage").value = item.value;
             })
         })
+        document.getElementById('search-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            let searchTerm = document.getElementById('search-term').value;
 
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById('search-results').innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open('GET', 'affCate?term=' + encodeURIComponent(searchTerm), true);
+            xhr.send();
+        });
     </script>
 
 </body>

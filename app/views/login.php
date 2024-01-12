@@ -9,17 +9,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
+
 <style>
     main {
         background-color: #eaeaea;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        min-height: 100vh;
+        margin: 0;
     }
 
     .contenu {
         display: flex;
+        flex-direction: column;
         max-width: 800px;
         width: 100%;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -27,12 +30,9 @@
     }
 
     .image-container {
-        flex: 1;
         overflow: hidden;
         background-color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        flex: 1;
     }
 
     .image-container img {
@@ -53,6 +53,7 @@
         font-weight: bold;
         gap: 20px;
         font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+        padding: 20px;
     }
 
     .formulaire input {
@@ -77,12 +78,12 @@
     ?>
 
     <main class="bg-light">
-        <div class="contenu bg-green">
+        <div class="contenu bg-white">
             <div class="image-container">
                 <img src="https://images.pexels.com/photos/2882566/pexels-photo-2882566.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                     alt="Image de démonstration" />
             </div>
-            <form method="POST" class="formulaire bg-white">
+            <form method="POST" class="formulaire">
                 <input type="email" name="email" placeholder="Adresse e-mail" required class="valide">
                 <p class="erreur">Veuillez entrer une adresse e-mail valide</p>
                 <input type="password" name="mot_de_passe" placeholder="Mot de passe" required class="valide">
@@ -91,6 +92,7 @@
             </form>
         </div>
     </main>
+
     <?php
     include('includ/footer.php');
     ?>
@@ -139,7 +141,6 @@
                 e.preventDefault();
             }
         });
-
     </script>
 </body>
 
