@@ -1,9 +1,9 @@
 <?php
-if($_SESSION['role_id'] == false){
+if(!isset($_SESSION['role_id'])){
 
     $_SESSION['role_id'] = null;
 }
-if($_SESSION['id'] == false){
+if(!isset($_SESSION['id'])){
 
     $_SESSION['id'] = null;
 }
