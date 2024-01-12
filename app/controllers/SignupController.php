@@ -12,14 +12,15 @@ class Signup extends Controller
             $user->setPrenom($_POST['prenom']);
             $user->setMotDePasse($_POST['mot_de_passe']);
             $user->setroleId($_POST['user_type']);
-            show($_POST['user_type']);
+            Functions::show($_POST['user_type']);
             $checkEmail = $user->login();
             $validEmail = $user->where($checkEmail);
             if(!count($validEmail)){
-                $data =  $user->regester();          
+                $data =  $user->regester();
+                Functions::show($data);       
                 $user->insert($data);
-                show($data);
-                redirect("login");
+              
+                Functions::redirect("login");
             }else{
                 echo('email in valid');
             }

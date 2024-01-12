@@ -1,3 +1,16 @@
+<?php
+if($_SESSION['role_id'] == false){
+
+    $_SESSION['role_id'] = null;
+}
+if($_SESSION['id'] == false){
+
+    $_SESSION['id'] = null;
+}
+
+?>
+
+
 <header class="p-3 text-bg-dark">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -17,20 +30,15 @@
 
             </ul>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
-                    aria-label="Search">
-            </form>
-
             <div class="text-end">
                 <?php if ($_SESSION['id'] == null) {
                     echo "<a href='login' type='button' class='btn btn-outline-light me-2'> Login </a>
                     <a href='Signup' type='button' class='btn btn-warning'>Sign-up</a>";
                 }
                 ?>
-                
+
                 <?php if ($_SESSION['role_id'] == 2) {
-                    echo "<a href='login' type='button' class='btn btn-outline-light me-2'> Dashbord admin </a>";
+                    echo "<a href='dashbord' type='button' class='btn btn-outline-light me-2'> Dashbord admin </a>";
                 }
                 ?>
             </div>

@@ -1,4 +1,6 @@
 <?php
+
+
 class Login extends Controller
 {
 
@@ -13,14 +15,15 @@ class Login extends Controller
             $data = $user->login();
             
             $mot = $user->where($data);
-            show($mot);
+            Functions::show($mot);
             if (count($data) === 1) {
                 $user->where($data);
                 if(password_verify($moto_pass, $mot[0]->mot_de_passe)){
-                    show($mot[0]->mot_de_passe);
+                   
                     $_SESSION['id'] = $mot[0]->idUtilisateur ;
                     $_SESSION['role_id'] = $mot[0]->role_id;
-                    redirect('home');
+                    $_SESSION['autore'] = $mot[0]->role_id;
+                    Functions::redirect('home');
                 }else{
                     echo"password in valid";
                 };

@@ -1,17 +1,26 @@
 <?php
 
-class Model extends Database{
-    
+class Model extends Database
+{
+
 
     public function getTable()
     {
         return $this->table;
     }
 
-    public function dynamicJoin($joinTable, $currentTableColumn, $joinColumn)
+    public function dynamicJoin($joinTable, $currentTableColumn, $joinColumn , $id)
+    {
+        $query = "SELECT * FROM $this->table";
+        $query .= " INNER JOIN $joinTable ON $this->table.$currentTableColumn = $joinTable.$joinColumn  WHERE idWiki =$id";
+
+        return $this->query($query);
+    }
+    public function dynamicJoinWithCondition($joinTable, $currentTableColumn, $joinColumn, $condition)
     {
         $query = "SELECT * FROM $this->table";
         $query .= " INNER JOIN $joinTable ON $this->table.$currentTableColumn = $joinTable.$joinColumn";
+        $query .= " WHERE $condition";
 
         return $this->query($query);
     }
@@ -65,7 +74,7 @@ class Model extends Database{
     }
 
 
-    
+
 
 
     public function insert($data = [])
@@ -79,9 +88,6 @@ class Model extends Database{
         $columns = implode(", ", $colum);
         $placeholders = ":" . implode(", :", $colum);
         $query = "INSERT INTO $this->table ($columns) VALUES ($placeholders)";
-
-        show($query);
-
         try {
             $this->query($query, $data);
             return true;
@@ -92,7 +98,7 @@ class Model extends Database{
 
 
 
-    public function update($id, $data, $id_column = 'id')
+    public function update($column, $value, $data, $id_column = 'id')
     {
         $keys = array_keys($data);
         $query = "UPDATE $this->table SET ";
@@ -103,30 +109,34 @@ class Model extends Database{
 
         $query = rtrim($query, ', ');
 
-        $query .= " WHERE `$id_column` = :$id_column ";
+        $query .= " WHERE `$column` = :$column ";
 
-        $data[$id_column] = $id;
+
+        $data[$column] = $value;
 
         try {
             $this->query($query, $data);
-            return true; 
+            return true;
         } catch (PDOException $e) {
             die("Update failed: " . $e->getMessage());
         }
     }
 
-    public function delete($id_column, $id = 'id')
+
+    public function delete($condition, $params = [])
     {
-        $data[$id] = $id_column;
-        $query = "DELETE FROM $this->table WHERE $id = :$id ";
-        show($data);
+        $query = "DELETE FROM $this->table WHERE $condition";
+        show($query);
+
         try {
-            $this->query($query, $data);
+            $this->query($query, $params);
             return true;
         } catch (PDOException $e) {
             die("Delete failed: " . $e->getMessage());
         }
     }
+
+
 
 
 
